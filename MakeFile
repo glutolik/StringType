@@ -1,0 +1,14 @@
+all: StringType
+
+StringType: main.o StringType.o
+	g++ -std=c++11 main.o StringType.o -o StringType
+
+main.o: main.cpp
+	g++ -std=c++11 -c main.cpp
+
+StringType.o: StringType.cpp
+	g++ -std=c++11 -c StringType.cpp
+clean:
+	rm -rf *.0 StringType
+	
+
