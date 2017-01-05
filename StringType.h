@@ -1,6 +1,8 @@
+#include <string>
 #include <cstring>
 #include <regex>
 #include <iostream>
+#include <algorithm>
 
 class StringType{
 private:
@@ -24,6 +26,7 @@ public:
 };
 
 bool like( const StringType& str, const StringType& pattern, char escape = '\\', bool ignorecase = false);
+bool str_like(const std::string& m_str, const std::string& m_pattern, size_t n, size_t m);
 //    size_t n = str.get_size();
 //
 //    std::string regex_pattern;
