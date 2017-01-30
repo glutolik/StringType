@@ -10,6 +10,8 @@ int main()
     const char* pc = p.c_str();
     StringType str(sc);
     StringType pattern(pc);
-    cout << like(str, pattern, '\\', true);
+    cout << like(str, pattern, '\\', true) << endl;
+    cout << Like(pattern).match(str) << endl;
+    std::string m_str = str.get_str();
     return 0;
 }

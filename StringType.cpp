@@ -10,58 +10,48 @@ bool like( const StringType& str, const StringType& pattern, char escape, bool i
         std::transform(m_str.begin(), m_str.end(), m_str.begin(), tolower);
         std::transform(m_pattern.begin(), m_pattern.end(), m_pattern.begin(), tolower);
     }
-
-    bool straight = str_like(m_str, m_pattern, n, m);
-    std::reverse(m_str.begin(), m_str.end());
-    std::reverse(m_pattern.begin(), m_pattern.end());
-    bool reversed = str_like(m_str, m_pattern, n, m);
-
-    return straight || reversed;
+    return str_like(m_str, m_pattern);
 }
 
-
-bool str_like(const std::string& m_str, const std::string& m_pattern, size_t n, size_t m){
-    size_t j = 0, k = 0, l = 0;
-
-    for(size_t i = 0; i < n; ++i){
-        k = i;
-
-        if(m_pattern[i] == '%'){
-            std::cout << "% " << j << std::endl;
-            while((m_pattern[k] == '%') && k < n){
-                ++k;
-            }
-            if(k == n){
-                std::cout << "true 1" << std::endl;
-                return true;
-            }
-            else
-                i = k - 1;
-            if(m_pattern[k] != '_'){
-                while(m_str[j] != m_pattern[k] && j < m){
-                    ++j;
+bool str_like(const std::string& m_str, const std::string& m_pattern){
+    size_t i = 0;
+    if(m_pattern.length() == 0 && m_str.length() != 0){
+        //std::cout << "exit 1" << std::endl;
+        return 0;
+    }
+    else if(m_pattern.length() == 0 && m_str.length() == 0){
+        //std::cout << "exit 2" << std::endl;
+        return 1;
+    }
+    else if(m_pattern[0] == '%'){
+        if(m_str.length() != 0){
+            for(i = 0; i <=
+             m_str.length(); ++i){
+                if(str_like(m_str.substr(i, m_str.length() - i), m_pattern.substr(1, m_pattern.length() - 1)) == 1){
+                    //std::cout << "exit % 1" << std::endl;
+                    return 1;
                 }
             }
+            //std::cout << "exit % 0" << std::endl;
+            return 0;
         }
-        else if(m_pattern[i] == '_'){
-            std::cout << "_ " << j << std::endl;
-            j++;
-        }
-        else if(m_pattern[i] != m_str[j]){
-            std::cout << "exit 2" << std::endl;
-            return false;
-        }
-        else
-            ++j;
-        if(j >= m + 1){
-            std::cout << "exit 3" << std::endl;
-            return false;
+        else{
+            return str_like(m_str, m_pattern.substr(1, m_pattern.length() - 1));
         }
     }
-    if(j < m){
-        std::cout << "exit 4 " << j << std::endl;
-        return false;
+    else if(m_pattern[0] == '_'){
+        if(m_str.length() == 0)
+            return 0;
+        else
+            return str_like(m_str.substr(1, m_str.length() - 1), m_pattern.substr(1, m_pattern.length() - 1));
+    }
+    else if(m_pattern[0] == m_str[0]){
+        return str_like(m_str.substr(1, m_str.length() - 1), m_pattern.substr(1, m_pattern.length() - 1));
     }
     else
-        return true;
+        return 0;
+}
+
+bool Like::match(const StringType& str) const{
+    return like(str, pattern);
 }
