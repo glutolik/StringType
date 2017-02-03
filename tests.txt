@@ -1,0 +1,16 @@
+abc abc 1
+abc a% 1
+abc _b_ 1
+abc c 0
+abc _abc_ 0
+abc a__% 1
+abc %a%_%c% 1
+abc %%_%%%%b%%%%_%% 1
+abc %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%b 0
+abc %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%ab 0
+abcabc a_c%c 1
+abcabcabc a%a%a_c 1
+abcabcabcabc a____c____b% 1
+abcabcabcabcabc %abc%___ 1
+aaaaaaaaaaaaaaaaaa a%_aaa_%a 1
+aaaaaaaaaaaaaaaaaa a%_aba_%a 0

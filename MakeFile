@@ -9,6 +9,6 @@ main.o: main.cpp
 StringType.o: StringType.cpp
 	g++ -std=c++11 -c StringType.cpp
 clean:
-	rm -rf *.0 StringType
+	rm -rf *.o StringType
 	
 

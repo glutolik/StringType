@@ -1,8 +1,10 @@
 #include <string>
 #include <cstring>
-#include <regex>
 #include <iostream>
 #include <algorithm>
+#include <stack>
+#include <fstream>
+#include <time.h>
 
 class StringType{
 private:
@@ -14,6 +16,8 @@ public:
     m_size(size)
     {}
     StringType(const char* str) : StringType(str, strlen(str))
+    {}
+    StringType(std::string str) : StringType(str.c_str(), strlen(str.c_str()))
     {}
 
     ~StringType() {}
@@ -43,3 +47,6 @@ public:
 
 bool like( const StringType& str, const StringType& pattern, char escape = '\\', bool ignorecase = false);
 bool str_like(const std::string& m_str, const std::string& m_pattern);
+
+bool stack_like( const StringType& str, const StringType& pattern, char escape = '\\', bool ignorecase = false);
+bool stack_str_like(const std::string& m_str, const std::string& m_pattern);
